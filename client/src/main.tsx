@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/user/:userId",
+    path: "/user",
     element: <div>Hit me up yo</div>,
   },
 ]);
