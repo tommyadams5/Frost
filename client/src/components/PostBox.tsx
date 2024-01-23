@@ -10,7 +10,6 @@ function PostBox({ pullData }: any) {
     e.preventDefault();
     await addDoc(collection(db, "posts"), {
       username: postUser,
-      displayName: "Atharva Deosthale",
       avatar: postUser,
       verified: true,
       text: postText,
@@ -20,7 +19,6 @@ function PostBox({ pullData }: any) {
     pullData();
     setPostText("");
     setPostPic("");
-    setPostUser("");
   };
 
   return (

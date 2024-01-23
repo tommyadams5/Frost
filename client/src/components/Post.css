@@ -23,3 +23,13 @@
 .post_content {
   padding-left: 10px;
 }
+
+.post_time {
+  text-align: right;
+  font-size: smaller;
+  color: gray;
+}
+
+.post_text {
+  padding-top: 8px;
+}

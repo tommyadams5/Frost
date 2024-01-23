@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import Resizer from "react-image-file-resizer";
 
 async function postImage(image: any, user: string) {
   console.log(image);
@@ -24,8 +25,24 @@ function CreateUser() {
     setImagePath(result.imagePath);
   };
 
-  const fileSelected = (event: any) => {
-    setFile(event.target.files[0]);
+  const fileSelected = async (event: any) => {
+    const resizeFile = (fileInput: any) =>
+      new Promise((resolve) => {
+        Resizer.imageFileResizer(
+          fileInput,
+          70,
+          70,
+          "JPEG",
+          100,
+          0,
+          (uri) => {
+            resolve(uri);
+          },
+          "file"
+        );
+      });
+    const fileResized = await resizeFile(event.target.files[0]);
+    setFile(fileResized);
   };
 
   return (
