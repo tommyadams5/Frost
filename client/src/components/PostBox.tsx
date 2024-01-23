@@ -4,14 +4,14 @@ import db from "../firebase.tsx";
 
 function PostBox({ pullData }: any) {
   const [postText, setPostText] = React.useState("");
+  const [postUser, setPostUser] = React.useState("");
   const [postPic, setPostPic] = React.useState("");
   const createPost = async (e: any) => {
     e.preventDefault();
     await addDoc(collection(db, "posts"), {
-      username: "happystark",
+      username: postUser,
       displayName: "Atharva Deosthale",
-      avatar:
-        "https://media.istockphoto.com/id/1341288649/photo/75mpix-panorama-of-beautiful-mount-ama-dablam-in-himalayas-nepal.jpg?s=612x612&w=0&k=20&c=0xb_bb-NBIxjiJL_kqY-o3dCjv2PmKFZfRjHcVEijDc=",
+      avatar: postUser,
       verified: true,
       text: postText,
       image: postPic,
@@ -20,12 +20,21 @@ function PostBox({ pullData }: any) {
     pullData();
     setPostText("");
     setPostPic("");
+    setPostUser("");
   };
 
   return (
     <div className="postBox">
       <form>
         <div className="postBoxInput">
+          <div>Username</div>
+          <input
+            value={postUser}
+            onChange={(e) => setPostUser(e.target.value)}
+            placeholder="Username"
+            type="text"
+          />
+          <div>Message</div>
           <input
             value={postText}
             onChange={(e) => setPostText(e.target.value)}

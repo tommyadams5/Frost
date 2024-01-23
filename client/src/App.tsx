@@ -1,20 +1,15 @@
 import Feed from "./components/Feed";
-import { useEffect } from "react";
+import "./App.css";
 
 function App() {
-  useEffect(() => {
-    fetch("http://localhost:3000/api").then((response) =>
-      console.log(response)
-    );
-    // .then((response) => response.json())
-    // .then((data) => setbackendData(data));
-  }, []);
-
   return (
-    <>
-      <Feed />
-      <a href={"/user/2"}>Contact Me</a>
-    </>
+    <div className="wrapper">
+      <div className="col_1"></div>
+      <div className="col_2">
+        <Feed />
+      </div>
+      <div className="col_3"></div>
+    </div>
   );
 }
 
