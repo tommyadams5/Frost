@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
+import LoginUser from "./Login.tsx";
+import CreateUser from "./components/CreateUser.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -9,8 +11,12 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/user",
-    element: <div>Hit me up yo</div>,
+    path: "/login",
+    element: <LoginUser />,
+  },
+  {
+    path: "/newuser",
+    element: <CreateUser />,
   },
 ]);
 

@@ -1,62 +1,45 @@
-import axios from "axios";
 import { useState } from "react";
-import Resizer from "react-image-file-resizer";
-
-async function postImage(image: any, user: string) {
-  console.log(image);
-  const formData = new FormData();
-  formData.append("image", image);
-  formData.append("user", user);
-  const result = await axios.post("/server/images", formData, {
-    headers: { "Content-Type": "multipart/form-data" },
-  });
-  return result.data;
-}
+import db from "../firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 function CreateUser() {
-  const [file, setFile] = useState<any>();
   const [username, setUsername] = useState<string>("");
-  const [imagePath, setImagePath] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [warning, setWarning] = useState<string>("");
 
   const submit = async (event: any) => {
     event.preventDefault();
-    const result = await postImage(file, username);
-    console.log(result);
-    setImagePath(result.imagePath);
-  };
-
-  const fileSelected = async (event: any) => {
-    const resizeFile = (fileInput: any) =>
-      new Promise((resolve) => {
-        Resizer.imageFileResizer(
-          fileInput,
-          70,
-          70,
-          "JPEG",
-          100,
-          0,
-          (uri) => {
-            resolve(uri);
-          },
-          "file"
-        );
+    const query = await getDoc(doc(db, "users", username));
+    if (query.exists()) {
+      setWarning("Username already exists");
+    } else {
+      setDoc(doc(db, "users", username), {
+        pass_word: password,
       });
-    const fileResized = await resizeFile(event.target.files[0]);
-    setFile(fileResized);
+      window.location.href = "/";
+    }
   };
 
   return (
-    <div>
+    <div className="wrapper">
+      <div></div>
       <form onSubmit={submit}>
-        <input type="file" onChange={fileSelected} accept="image/*" />
+        <div>Username</div>
         <input
           value={username}
           type="text"
           onChange={(e) => setUsername(e.target.value)}
         />
-        <button type="submit">Submit</button>
+        <div>Password</div>
+        <input
+          value={password}
+          type="text"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <div></div>
+        <button type="submit">Create Account</button>
+        <div>{warning}</div>
       </form>
-      <img src={imagePath} alt="" />
     </div>
   );
 }

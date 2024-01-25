@@ -1,7 +1,7 @@
 import React from "react";
 import Post from "./Post";
 import PostBox from "./PostBox";
-import CreateUser from "./CreateUser";
+import CreateUserPast from "./CreateUserPast";
 import db from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import DeleteButton from "./DeleteButton";
@@ -29,7 +29,7 @@ function Feed() {
 
   return (
     <div className="feed">
-      <CreateUser />
+      <CreateUserPast />
       <DeleteButton pullData={pullData} />
       <PostBox pullData={pullData} />
       {posts.map((post: any) => (
