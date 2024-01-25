@@ -4,7 +4,7 @@ const multer = require("multer");
 const upload = multer({ dest: "uploads" });
 const fs = require("fs");
 const path = require("path");
-const AWS = require("./AWS.js");
+const AWS = require("./AWS.ts");
 
 app.get("/server", (req, res) => {
   res.json("Hi, this is index.js speaking");
@@ -21,7 +21,7 @@ app.post("/server/images", upload.single("image"), async (req, res) => {
   await AWS.uploadFile(postFile, postUsername);
   res.send({ imagePath: `/server/images/${postUsername}` });
 
-  filePath = path.join("uploads/", postFile.filename);
+  const filePath = path.join("uploads/", postFile.filename);
   fs.unlink(filePath, (err) => {
     if (err) {
       console.error(err);
