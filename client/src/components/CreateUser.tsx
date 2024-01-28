@@ -1,6 +1,5 @@
 import { useState } from "react";
-import db from "../firebase";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import sendData from "./sendData.tsx";
 
 function CreateUser() {
   const [username, setUsername] = useState<string>("");
@@ -9,15 +8,12 @@ function CreateUser() {
 
   const submit = async (event: any) => {
     event.preventDefault();
-    const query = await getDoc(doc(db, "users", username));
-    if (query.exists()) {
-      setWarning("Username already exists");
-    } else {
-      setDoc(doc(db, "users", username), {
-        pass_word: password,
-      });
-      window.location.href = "/";
-    }
+    const query = await sendData(
+      { username: username, password: password },
+      "/server/newuser"
+    );
+    setWarning(query);
+    // window.location.href = "/";
   };
 
   return (

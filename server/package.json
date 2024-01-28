@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server",
@@ -17,8 +18,7 @@
     "express": "^4.18.2",
     "firebase": "^10.7.2",
     "firebase-admin": "^12.0.0",
-    "multer": "^1.4.5-lts.1",
-    "typescript": "^5.3.3"
+    "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"

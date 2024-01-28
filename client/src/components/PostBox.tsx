@@ -1,6 +1,7 @@
-import { collection, addDoc } from "firebase/firestore";
+// import { collection, addDoc } from "firebase/firestore";
 import React from "react";
-import db from "../firebase.tsx";
+import sendData from "./sendData.tsx";
+// import db from "../firebase.tsx";
 
 function PostBox({ pullData }: any) {
   const [postText, setPostText] = React.useState("");
@@ -8,14 +9,17 @@ function PostBox({ pullData }: any) {
   const [postPic, setPostPic] = React.useState("");
   const createPost = async (e: any) => {
     e.preventDefault();
-    await addDoc(collection(db, "posts"), {
-      username: postUser,
-      avatar: postUser,
-      verified: true,
-      text: postText,
-      image: postPic,
-      time: Date.now(),
-    });
+    await sendData(
+      {
+        username: postUser,
+        avatar: postUser,
+        verified: true,
+        text: postText,
+        image: postPic,
+        time: Date.now(),
+      },
+      "/server/newpost"
+    );
     pullData();
     setPostText("");
     setPostPic("");

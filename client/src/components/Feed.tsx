@@ -1,10 +1,9 @@
 import React from "react";
 import Post from "./Post";
 import PostBox from "./PostBox";
-import CreateUserPast from "./CreateUserPast";
-import db from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import CreateUser from "./CreateUser";
 import DeleteButton from "./DeleteButton";
+import axios from "axios";
 
 function Feed() {
   const init: any[] = [];
@@ -12,15 +11,8 @@ function Feed() {
   const [posts, setPosts] = React.useState(init);
 
   async function pullData() {
-    const query = await getDocs(collection(db, "posts"));
-    let docData: any[] = [];
-    query.forEach((doc) => {
-      let singleData = doc.data();
-      singleData["id"] = doc.id;
-      docData.push(singleData);
-      docData.sort((a, b) => b.time - a.time);
-    });
-    setPosts(docData);
+    const query = await axios.get("/server/posts");
+    setPosts(query.data);
   }
 
   React.useEffect(() => {
@@ -29,7 +21,7 @@ function Feed() {
 
   return (
     <div className="feed">
-      <CreateUserPast />
+      <CreateUser />
       <DeleteButton pullData={pullData} />
       <PostBox pullData={pullData} />
       {posts.map((post: any) => (
