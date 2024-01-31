@@ -1,19 +1,21 @@
-// import { collection, addDoc } from "firebase/firestore";
 import React from "react";
 import sendData from "./sendData.tsx";
-// import db from "../firebase.tsx";
+import axios from "axios";
 
 function PostBox({ pullData }: any) {
   const [postText, setPostText] = React.useState("");
-  const [postUser, setPostUser] = React.useState("");
   const [postPic, setPostPic] = React.useState("");
+  const [username, setUsername] = React.useState("");
+  async function UserID() {
+    const query = await axios.get("/server/userid");
+    setUsername(query.data);
+  }
+  UserID();
+
   const createPost = async (e: any) => {
     e.preventDefault();
     await sendData(
       {
-        username: postUser,
-        avatar: postUser,
-        verified: true,
         text: postText,
         image: postPic,
         time: Date.now(),
@@ -27,15 +29,9 @@ function PostBox({ pullData }: any) {
 
   return (
     <div className="postBox">
+      <div>Username: {username}</div>
       <form>
         <div className="postBoxInput">
-          <div>Username</div>
-          <input
-            value={postUser}
-            onChange={(e) => setPostUser(e.target.value)}
-            placeholder="Username"
-            type="text"
-          />
           <div>Message</div>
           <input
             value={postText}

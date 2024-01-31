@@ -6,8 +6,10 @@ const cookieJWT = (req, res, next) => {
     req.user = jwt.verify(token, "excalibur");
     next();
   } catch (err) {
-    res.clearCookie("token");
-    console.log("cleared cookie");
+    console.log("invalid token");
+    next();
+    // res.clearCookie("token").send("invalid token");
+    // res.clearCookie("token").redirect("/login");
   }
 };
 

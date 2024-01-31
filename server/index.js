@@ -7,17 +7,16 @@ import db from "./firestore.js";
 import jwt from "jsonwebtoken";
 import cookieJWT from "./JWTauth.js";
 import cookieParser from "cookie-parser";
+const __dirname = path.resolve();
 
 const app = express();
 const upload = multer({ dest: "uploads" });
 app.use(cookieParser());
+app.get("/", cookieJWT, express.static(path.join(__dirname, "../client/dist")));
+// app.use("/login", express.static(path.join(__dirname, "../client/dist")));
 
 app.get("/server/userid", cookieJWT, (req, res) => {
   res.send(req.user.username);
-});
-
-app.get("/server", cookieJWT, (req, res) => {
-  res.json("Hi, this is index.js speaking");
 });
 
 app.get("/server/images/:key", (req, res) => {
@@ -68,8 +67,10 @@ app.post("/server/login", upload.none(), async (req, res) => {
   } catch (err) {
     res.send("Username does not exist");
   }
+});
 
-  // return res.redirect("/");
+app.get("/logout", (req, res) => {
+  res.clearCookie("token").status(200).redirect("/login");
 });
 
 app.post("/server/newuser", upload.none(), async (req, res) => {
@@ -84,11 +85,10 @@ app.post("/server/newuser", upload.none(), async (req, res) => {
   }
 });
 
-app.post("/server/newpost", upload.none(), async (req, res) => {
+app.post("/server/newpost", cookieJWT, upload.none(), async (req, res) => {
   await db.collection("posts").add({
-    username: req.body.username,
-    avatar: req.body.username,
-    verified: true,
+    username: req.user.username,
+    avatar: req.user.username,
     text: req.body.text,
     image: req.body.image,
     time: Number(req.body.time),
