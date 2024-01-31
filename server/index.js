@@ -12,8 +12,11 @@ const __dirname = path.resolve();
 const app = express();
 const upload = multer({ dest: "uploads" });
 app.use(cookieParser());
-app.get("/", cookieJWT, express.static(path.join(__dirname, "../client/dist")));
-// app.use("/login", express.static(path.join(__dirname, "../client/dist")));
+app.get("/", express.static(path.join(__dirname, "../client/dist/")));
+app.use(
+  "/assets",
+  express.static(path.join(__dirname, "../client/dist/assets"))
+);
 
 app.get("/server/userid", cookieJWT, (req, res) => {
   res.send(req.user.username);
@@ -70,7 +73,7 @@ app.post("/server/login", upload.none(), async (req, res) => {
 });
 
 app.get("/logout", (req, res) => {
-  res.clearCookie("token").status(200).redirect("/login");
+  res.clearCookie("token").status(200).redirect("/");
 });
 
 app.post("/server/newuser", upload.none(), async (req, res) => {
