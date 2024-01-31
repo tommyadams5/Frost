@@ -1,9 +1,11 @@
 import React from "react";
 import Post from "./Post";
 import PostBox from "./PostBox";
+import CreateUser from "./CreateUser";
+import DeleteButton from "./DeleteButton";
 import axios from "axios";
 
-function Feed() {
+function FeedAdmin() {
   const init: any[] = [];
 
   const [posts, setPosts] = React.useState(init);
@@ -19,6 +21,8 @@ function Feed() {
 
   return (
     <div className="feed">
+      <CreateUser />
+      <DeleteButton pullData={pullData} />
       <PostBox pullData={pullData} />
       {posts.map((post: any) => (
         <Post
@@ -34,4 +38,4 @@ function Feed() {
   );
 }
 
-export default Feed;
+export default FeedAdmin;

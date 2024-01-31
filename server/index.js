@@ -4,11 +4,19 @@ import fs from "fs";
 import path from "path";
 import { uploadFile, getFileStream } from "./AWS.js";
 import db from "./firestore.js";
+import jwt from "jsonwebtoken";
+import cookieJWT from "./JWTauth.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 const upload = multer({ dest: "uploads" });
+app.use(cookieParser());
 
-app.get("/server", (req, res) => {
+app.get("/server/userid", cookieJWT, (req, res) => {
+  res.send(req.user.username);
+});
+
+app.get("/server", cookieJWT, (req, res) => {
   res.json("Hi, this is index.js speaking");
 });
 
@@ -46,9 +54,22 @@ app.post("/server/images", upload.single("image"), async (req, res) => {
 });
 
 app.post("/server/login", upload.none(), async (req, res) => {
-  const doc = await db.collection("users").doc(req.body.username).get();
-  console.log(doc.data());
-  res.send(doc.data());
+  try {
+    const doc = await db.collection("users").doc(req.body.username).get();
+    if (doc.data().password === req.body.password) {
+      const token = jwt.sign({ username: req.body.username }, "excalibur", {
+        expiresIn: "1h",
+      });
+      res.cookie("token", token, { httpOnly: true });
+      res.send("Password match");
+    } else {
+      res.send("Wrong password");
+    }
+  } catch (err) {
+    res.send("Username does not exist");
+  }
+
+  // return res.redirect("/");
 });
 
 app.post("/server/newuser", upload.none(), async (req, res) => {

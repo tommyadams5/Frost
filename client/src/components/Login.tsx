@@ -8,17 +8,11 @@ function LoginUser() {
   const [warning, setWarning] = React.useState<string>("");
   const submit = async (event: any) => {
     event.preventDefault();
-    const query = await sendData({ username: username }, "/server/login");
-    console.log(query);
-    if (query.pass_word) {
-      if (query.pass_word === password) {
-        setWarning("Password match");
-      } else {
-        setWarning("Wrong password");
-      }
-    } else {
-      setWarning("Username does not exist");
-    }
+    const query = await sendData(
+      { username: username, password: password },
+      "/server/login"
+    );
+    setWarning(query);
   };
 
   return (
