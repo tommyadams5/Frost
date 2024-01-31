@@ -1,18 +1,24 @@
 import React from "react";
 import "./Login.css";
 import sendData from "./sendData.tsx";
+import { useNavigate } from "react-router-dom";
 
 function LoginUser() {
   const [username, setUsername] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
   const [warning, setWarning] = React.useState<string>("");
+  const navigate = useNavigate();
   const submit = async (event: any) => {
     event.preventDefault();
     const query = await sendData(
       { username: username, password: password },
       "/server/login"
     );
-    setWarning(query);
+    if (query === "Password match") {
+      navigate("/");
+    } else {
+      setWarning(query);
+    }
   };
 
   return (

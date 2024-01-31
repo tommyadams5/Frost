@@ -7,9 +7,7 @@ const cookieJWT = (req, res, next) => {
     next();
   } catch (err) {
     console.log("invalid token");
-    next();
-    // res.clearCookie("token").send("invalid token");
-    // res.clearCookie("token").redirect("/login");
+    res.clearCookie("token").sendStatus(403);
   }
 };
 

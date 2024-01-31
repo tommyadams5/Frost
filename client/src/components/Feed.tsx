@@ -19,6 +19,7 @@ function Feed() {
 
   return (
     <div className="feed">
+      <a href="/server/logout">Logout</a>
       <PostBox pullData={pullData} />
       {posts.map((post: any) => (
         <Post

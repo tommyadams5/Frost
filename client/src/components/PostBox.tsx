@@ -7,7 +7,7 @@ function PostBox({ pullData }: any) {
   const [postPic, setPostPic] = React.useState("");
   const [username, setUsername] = React.useState("");
   async function UserID() {
-    const query = await axios.get("/server/userid");
+    const query = await axios.get("/server/verify");
     setUsername(query.data);
   }
   UserID();

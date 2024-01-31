@@ -12,13 +12,14 @@ const __dirname = path.resolve();
 const app = express();
 const upload = multer({ dest: "uploads" });
 app.use(cookieParser());
-app.get("/", express.static(path.join(__dirname, "../client/dist/")));
-app.use(
-  "/assets",
-  express.static(path.join(__dirname, "../client/dist/assets"))
-);
+app.use("/", express.static(path.join(__dirname, "../client/dist/")));
+app.use("/login", express.static(path.join(__dirname, "../client/dist/")));
+// app.use(
+//   "/assets",
+//   express.static(path.join(__dirname, "../client/dist/assets"))
+// );
 
-app.get("/server/userid", cookieJWT, (req, res) => {
+app.get("/server/verify", cookieJWT, (req, res) => {
   res.send(req.user.username);
 });
 
@@ -27,7 +28,7 @@ app.get("/server/images/:key", (req, res) => {
   readStream.pipe(res);
 });
 
-app.get("/server/posts", async (req, res) => {
+app.get("/server/posts", cookieJWT, async (req, res) => {
   const posts = await db.collection("posts").get();
   let docData = [];
   posts.forEach((doc) => {
@@ -39,21 +40,26 @@ app.get("/server/posts", async (req, res) => {
   res.send(docData);
 });
 
-app.post("/server/images", upload.single("image"), async (req, res) => {
-  const postFile = req.file;
-  const postUsername = req.body.user;
-  await uploadFile(postFile, postUsername);
-  res.send({ imagePath: `/server/images/${postUsername}` });
+app.post(
+  "/server/images",
+  cookieJWT,
+  upload.single("image"),
+  async (req, res) => {
+    const postFile = req.file;
+    const postUsername = req.user.username;
+    await uploadFile(postFile, postUsername);
+    res.send({ imagePath: `/server/images/${postUsername}` });
 
-  const filePath = path.join("uploads/", postFile.filename);
-  fs.unlink(filePath, (err) => {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log("File is deleted.");
-    }
-  });
-});
+    const filePath = path.join("uploads/", postFile.filename);
+    fs.unlink(filePath, (err) => {
+      if (err) {
+        console.error(err);
+      } else {
+        console.log("File is deleted.");
+      }
+    });
+  }
+);
 
 app.post("/server/login", upload.none(), async (req, res) => {
   try {
@@ -72,7 +78,7 @@ app.post("/server/login", upload.none(), async (req, res) => {
   }
 });
 
-app.get("/logout", (req, res) => {
+app.get("/server/logout", (req, res) => {
   res.clearCookie("token").status(200).redirect("/");
 });
 

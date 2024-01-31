@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import AppAdmin from "./AppAdmin.tsx";
 import LoginUser from "./components/Login.tsx";
 import CreateUser from "./components/CreateUser.tsx";
 import axios from "axios";
@@ -13,7 +12,7 @@ import {
 
 const loader = async () => {
   try {
-    await axios.get("/server/userid");
+    await axios.get("/server/verify");
     return null;
   } catch (err) {
     return redirect("/login");
@@ -26,10 +25,7 @@ const router = createBrowserRouter([
     element: <App />,
     loader: loader,
   },
-  {
-    path: "/admin",
-    element: <AppAdmin />,
-  },
+
   {
     path: "/login",
     element: <LoginUser />,
