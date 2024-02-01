@@ -1,13 +1,11 @@
 import React from "react";
 import "./Login.css";
 import sendData from "./sendData.tsx";
-import { useNavigate } from "react-router-dom";
 
 function LoginUser() {
   const [username, setUsername] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
   const [warning, setWarning] = React.useState<string>("");
-  const navigate = useNavigate();
   const submit = async (event: any) => {
     event.preventDefault();
     const query = await sendData(
@@ -15,7 +13,7 @@ function LoginUser() {
       "/server/login"
     );
     if (query === "Password match") {
-      navigate("/");
+      window.location.href = "/";
     } else {
       setWarning(query);
     }
@@ -43,6 +41,7 @@ function LoginUser() {
         <div></div>
         <button type="submit">Login</button>
         <div>{warning}</div>
+        <a href="/newuser">Create Account</a>
       </form>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from "react";
-import Post from "./Post";
-import PostBox from "./PostBox";
+import Post from "./Post.tsx";
+import PostBox from "./PostBox.tsx";
+
 import axios from "axios";
 
 function Feed() {
@@ -19,6 +20,8 @@ function Feed() {
 
   return (
     <div className="feed">
+      <a href="/server/delete">Clear Feed</a>
+      <div></div>
       <a href="/server/logout">Logout</a>
       <PostBox pullData={pullData} />
       {posts.map((post: any) => (

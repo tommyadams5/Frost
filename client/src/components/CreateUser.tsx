@@ -5,15 +5,25 @@ function CreateUser() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [warning, setWarning] = useState<string>("");
-
   const submit = async (event: any) => {
     event.preventDefault();
     const query = await sendData(
       { username: username, password: password },
       "/server/newuser"
     );
-    setWarning(query);
-    // window.location.href = "/";
+    if (query === "User created") {
+      const query2 = await sendData(
+        { username: username, password: password },
+        "/server/login"
+      );
+      if (query2 === "Password match") {
+        window.location.href = "/";
+      } else {
+        setWarning(query2);
+      }
+    } else {
+      setWarning(query);
+    }
   };
 
   return (

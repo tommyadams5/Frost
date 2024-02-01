@@ -24,13 +24,57 @@ function uploadFile(file, username) {
     .promise();
 }
 
-function getFileStream(fileKey) {
+// function getFileStream(fileKey) {
+//   const downloadParams = {
+//     Key: fileKey,
+//     Bucket: bucket,
+//   };
+
+//   const data = s3
+//     .getObject(downloadParams)
+//     .createReadStream()
+//     .on("error", (e) => {
+//       console.error("Error fetching file stream");
+//       return "error";
+//     });
+//   return data;
+// }
+
+const getFileStream = async (req, res, next) => {
+  // const fileKey = req.params.key;
+  console.log(req.params.key);
+
+  const fileKey = req.params.key;
   const downloadParams = {
     Key: fileKey,
     Bucket: bucket,
   };
+  const defaultParams = {
+    Key: "default",
+    Bucket: bucket,
+  };
+  const data = s3
+    .getObject(downloadParams)
+    .createReadStream()
+    .on("error", (err) => {
+      // res.sendStatus(500);
+      next();
+    });
+  data.pipe(res);
+};
 
-  return s3.getObject(downloadParams).createReadStream();
-}
+const getFileStream3 = async (req, res) => {
+  const defaultParams = {
+    Key: "default",
+    Bucket: bucket,
+  };
+  const data = s3
+    .getObject(defaultParams)
+    .createReadStream()
+    .on("error", (err) => {
+      res.sendStatus(500);
+    });
+  data.pipe(res);
+};
 
-export { uploadFile, getFileStream };
+export { uploadFile, getFileStream, getFileStream3 };

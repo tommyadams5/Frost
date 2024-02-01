@@ -1,6 +1,8 @@
 import React from "react";
 import sendData from "./sendData.tsx";
 import axios from "axios";
+import "./PostBox.css";
+import ProfileImage from "./ProfileImage.tsx";
 
 function PostBox({ pullData }: any) {
   const [postText, setPostText] = React.useState("");
@@ -29,6 +31,8 @@ function PostBox({ pullData }: any) {
 
   return (
     <div className="postBox">
+      <ProfileImage username={username} />
+
       <div>Username: {username}</div>
       <form>
         <div className="postBoxInput">
