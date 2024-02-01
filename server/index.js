@@ -2,7 +2,7 @@ import express from "express";
 import multer from "multer";
 import fs from "fs";
 import path from "path";
-import { uploadFile, getFileStream, getFileStream3 } from "./AWS.js";
+import { uploadFile, getFileStream } from "./AWS.js";
 import db from "./firestore.js";
 import jwt from "jsonwebtoken";
 import cookieJWT from "./JWTauth.js";
@@ -20,17 +20,7 @@ app.get("/server/verify", cookieJWT, (req, res) => {
   res.send(req.user.username);
 });
 
-// app.get("/server/images/:key", async (req, res) => {
-//   const readStream = await getFileStream(req.params.key);
-//   if (readStream === "error") {
-//     res.sendStatus(404);
-//     console.log("error sent");
-//   } else {
-//     readStream.pipe(res);
-//   }
-// });
-
-app.get("/server/images/:key", getFileStream, getFileStream3);
+app.get("/server/images/:key", getFileStream, getFileStream);
 
 app.get("/server/posts", cookieJWT, async (req, res) => {
   const posts = await db.collection("posts").get();

@@ -39,10 +39,6 @@ function ProfileImage(props: any) {
     <div className="wrapper">
       <img
         src={"http://localhost:8000/server/images/" + props.username}
-        // onError={({ currentTarget }) => {
-        //   currentTarget.onerror = null; // prevents looping
-        //   currentTarget.src = "http://localhost:8000/server/images/default";
-        // }}
         className="postbox_avatar"
         onClick={() => document.getElementById("fileInput")?.click()}
       />
