@@ -12,7 +12,7 @@ async function postImage(image: any, user: string) {
   return result.data;
 }
 
-function ProfileImage(props: any) {
+function ProfileImage({ username }: any) {
   const fileSelected = async (event: any) => {
     const resizeFile = (fileInput: any) =>
       new Promise((resolve) => {
@@ -30,15 +30,16 @@ function ProfileImage(props: any) {
         );
       });
     const fileResized = await resizeFile(event.target.files[0]);
-    console.log(fileResized, props.username);
-    const result = await postImage(fileResized, props.username);
+    console.log(fileResized, username);
+    const result = await postImage(fileResized, username);
     console.log(result);
+    window.location.href = "/";
   };
 
   return (
     <div className="wrapper">
       <img
-        src={"http://localhost:8000/server/images/" + props.username}
+        src={"http://localhost:8000/server/images/" + username}
         className="postbox_avatar"
         onClick={() => document.getElementById("fileInput")?.click()}
       />

@@ -13,7 +13,6 @@ function PostBox({ pullData }: any) {
     setUsername(query.data);
   }
   UserID();
-
   const createPost = async (e: any) => {
     e.preventDefault();
     await sendData(
@@ -24,6 +23,7 @@ function PostBox({ pullData }: any) {
       },
       "/server/newpost"
     );
+
     pullData();
     setPostText("");
     setPostPic("");
