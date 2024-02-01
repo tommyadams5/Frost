@@ -38,11 +38,13 @@ function ProfileImage({ username }: any) {
 
   return (
     <div className="wrapper">
-      <img
-        src={"http://localhost:8000/server/images/" + username}
-        className="postbox_avatar"
-        onClick={() => document.getElementById("fileInput")?.click()}
-      />
+      {username && (
+        <img
+          src={"http://localhost:8000/server/images/" + username}
+          className="postbox_avatar"
+          onClick={() => document.getElementById("fileInput")?.click()}
+        />
+      )}
       <input
         type="file"
         id="fileInput"
