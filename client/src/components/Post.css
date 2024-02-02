@@ -11,12 +11,12 @@
   grid-template-columns: 1fr 3.5fr;
 }
 
-.post_avatar {
+.post_profileImg {
   border-radius: 50%;
   height: 70px;
   width: 70px;
 }
-.post_avatar_box {
+.post_profileImg_box {
   text-align: center;
 }
 

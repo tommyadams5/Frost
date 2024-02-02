@@ -41,7 +41,7 @@ function ProfileImage({ username }: any) {
       {username && (
         <img
           src={"http://localhost:8000/server/images/" + username}
-          className="postbox_avatar"
+          className="postbox_profileImg"
           onClick={() => document.getElementById("fileInput")?.click()}
         />
       )}

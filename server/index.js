@@ -7,6 +7,7 @@ import db from "./firestore.js";
 import jwt from "jsonwebtoken";
 import cookieJWT from "./JWTauth.js";
 import cookieParser from "cookie-parser";
+import DeleteAccount from "./DeleteAccount.js";
 const __dirname = path.resolve();
 
 const app = express();
@@ -18,6 +19,10 @@ app.use("/newuser", express.static(path.join(__dirname, "../client/dist/")));
 
 app.get("/server/verify", cookieJWT, (req, res) => {
   res.send(req.user.username);
+});
+
+app.get("/server/delete-account", cookieJWT, DeleteAccount, (req, res) => {
+  res.clearCookie("token").status(200).redirect("/");
 });
 
 app.get("/server/images/:key", getFileStream, getFileStream);
@@ -91,7 +96,7 @@ app.post("/server/newuser", upload.none(), async (req, res) => {
 app.post("/server/newpost", cookieJWT, upload.none(), async (req, res) => {
   await db.collection("posts").add({
     username: req.user.username,
-    avatar: req.user.username,
+    profileImg: req.user.username,
     text: req.body.text,
     image: req.body.image,
     time: Number(req.body.time),

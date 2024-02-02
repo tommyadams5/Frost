@@ -13,6 +13,21 @@ const s3 = new AWS.S3({
   region: awsregion,
 });
 
+async function deleteFile(filename) {
+  console.log(filename);
+  const params = {
+    Bucket: bucket,
+    Key: filename,
+  };
+  s3.deleteObject(params, function (err, data) {
+    if (err) {
+      console.log("Error deleting object:", err);
+    } else {
+      console.log("Object deleted successfully");
+    }
+  });
+}
+
 function uploadFile(file, username) {
   const fileStream = fs.createReadStream(file.path);
   return s3
@@ -40,4 +55,4 @@ const getFileStream = (req, res, next) => {
   data.pipe(res);
 };
 
-export { uploadFile, getFileStream };
+export { uploadFile, deleteFile, getFileStream };

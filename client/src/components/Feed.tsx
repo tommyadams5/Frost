@@ -20,6 +20,8 @@ function Feed() {
 
   return (
     <div className="feed">
+      <a href="/server/delete-account">Delete Account</a>
+      <div></div>
       <a href="/server/delete">Clear Feed</a>
       <div></div>
       <a href="/server/logout">Logout</a>
@@ -29,7 +31,7 @@ function Feed() {
           username={post.username}
           text={post.text}
           image={post.image}
-          avatar={post.avatar}
+          profileImg={post.profileImg}
           key={post.id}
           time={post.time}
         />

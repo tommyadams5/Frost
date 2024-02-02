@@ -4,11 +4,11 @@ interface Props {
   username: string;
   text: string;
   image: string;
-  avatar: string;
+  profileImg: string;
   time: Date;
 }
 
-function Post({ text, username, avatar, image, time }: Props) {
+function Post({ text, username, profileImg, image, time }: Props) {
   const datetime = new Date(time);
   const datetimeFormatted = new Intl.DateTimeFormat("en-US", {
     dateStyle: "short",
@@ -24,10 +24,10 @@ function Post({ text, username, avatar, image, time }: Props) {
 
   return (
     <div className="post_box">
-      <div className="post_avatar_box">
+      <div className="post_profileImg_box">
         <img
-          className="post_avatar"
-          src={"http://localhost:8000/server/images/" + avatar}
+          className="post_profileImg"
+          src={"http://localhost:8000/server/images/" + profileImg}
         ></img>
         <div className="post_username">{username}</div>
       </div>
