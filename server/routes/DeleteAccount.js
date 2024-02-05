@@ -1,7 +1,7 @@
-import db from "./firestore.js";
-import { deleteFile } from "./AWS.js";
+import db from "../logic/firestore.js";
+import { deleteFile } from "../logic/AWS.js";
 
-const DeleteAccount = async (req, res, next) => {
+const DeleteAccount = async (req, res) => {
   const query = await db
     .collection("posts")
     .where("username", "==", req.user.username)
@@ -15,7 +15,7 @@ const DeleteAccount = async (req, res, next) => {
 
   deleteFile(req.user.username);
 
-  next();
+  res.clearCookie("token").status(200).redirect("/");
 };
 
 export default DeleteAccount;
