@@ -12,7 +12,6 @@ function Feed() {
   async function pullData() {
     const query = await axios.get("/server/posts");
     setPosts(query.data);
-    console.log(query.data[0].id);
   }
 
   React.useEffect(() => {
@@ -35,6 +34,8 @@ function Feed() {
           image={post.image}
           time={post.time}
           postID={post.id}
+          likes={post.likes}
+          liked={post.liked}
         />
       ))}
     </div>

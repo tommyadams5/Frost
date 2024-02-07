@@ -23,6 +23,12 @@
 .post_content {
   padding-left: 10px;
   padding-right: 10px;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.post_image {
+  display: block;
 }
 
 .post_time {
@@ -36,14 +42,16 @@
 }
 
 .likes {
-  padding-top: 14px;
-  font-size: 15px;
+  padding-top: 10px;
   text-align: right;
+  font-size: smaller;
+  color: gray;
 }
 
 .star_box {
   display: grid;
   grid-template-columns: 1fr auto;
+  align-self: end;
 }
 
 .star {
@@ -51,11 +59,10 @@
 }
 
 .star_label {
-  padding-top: 4px;
-  font-size: 23px;
+  font-size: 21px;
   transition: 0.2s ease;
   color: orange;
-  margin-left: 5px;
+  margin-left: 6px;
 }
 
 .star_label:hover {

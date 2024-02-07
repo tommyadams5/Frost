@@ -6,6 +6,7 @@ const GetPosts = async (req, res) => {
   posts.forEach((doc) => {
     let singleData = doc.data();
     singleData["id"] = doc.id;
+    singleData["liked"] = req.likedPosts.includes(doc.id);
     docData.push(singleData);
   });
   docData.sort((a, b) => b.time - a.time);

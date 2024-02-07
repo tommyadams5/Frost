@@ -1,5 +1,6 @@
 import "./Post.css";
 import sendData from "./sendData";
+import React from "react";
 
 interface Props {
   text: string;
@@ -8,10 +9,30 @@ interface Props {
   image: string;
   time: Date;
   postID: string;
+  likes: number;
+  liked: boolean;
 }
 
-function Post({ text, username, profileImg, image, time, postID }: Props) {
+function Post({
+  text,
+  username,
+  profileImg,
+  image,
+  time,
+  postID,
+  likes,
+  liked,
+}: Props) {
   const datetime = new Date(time);
+  const [likesCount, setLikesCount] = React.useState(likes);
+  const [isChecked, setIsChecked] = React.useState(liked);
+  React.useEffect(() => {
+    setLikesCount(likes);
+  }, [time]);
+  React.useEffect(() => {
+    setIsChecked(liked);
+  }, [time]);
+
   const datetimeFormatted = new Intl.DateTimeFormat("en-US", {
     dateStyle: "short",
     timeStyle: "short",
@@ -25,12 +46,14 @@ function Post({ text, username, profileImg, image, time, postID }: Props) {
   );
 
   const sendLike = () => {
+    setIsChecked(!isChecked);
+    sendData({ postID: postID }, "/server/like");
     let checkbox = document.getElementById(time + username) as HTMLInputElement;
     if (checkbox !== null) {
       if (checkbox.checked) {
-        sendData({ postID: postID }, "/server/like");
+        setLikesCount(likesCount + 1);
       } else {
-        sendData({ postID: postID }, "/server/unlike");
+        setLikesCount(likesCount - 1);
       }
     }
   };
@@ -50,20 +73,20 @@ function Post({ text, username, profileImg, image, time, postID }: Props) {
           className="post_text"
           dangerouslySetInnerHTML={{ __html: textWithLinks }}
         />
-        <div className="post_image">
-          <img src={image} alt="" />
-        </div>
+        <img className="post_image" src={image} alt="" />
         <div className="star_box">
-          <div className="likes">Likes</div>
+          <div className="likes">{likesCount > 0 && likesCount}</div>
           <input
             type="checkbox"
             className="star"
+            checked={isChecked}
             id={time + username}
             onChange={sendLike}
           />
           <label htmlFor={time + username} className="star_label"></label>
         </div>
       </div>
+      <div></div>
     </div>
   );
 }

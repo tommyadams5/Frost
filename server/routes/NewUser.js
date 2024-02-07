@@ -7,7 +7,7 @@ const NewUser = async (req, res) => {
   } else {
     db.collection("users")
       .doc(req.body.username)
-      .set({ password: req.body.password });
+      .set({ password: req.body.password, liked: [] });
     res.send("User created");
   }
 };

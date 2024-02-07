@@ -7,6 +7,7 @@ const NewPost = async (req, res) => {
     text: req.body.text,
     image: req.body.image,
     time: Number(req.body.time),
+    likes: 0,
   });
   res.send("User created");
 };

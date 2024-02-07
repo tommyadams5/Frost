@@ -7,7 +7,9 @@ import cookieParser from "cookie-parser";
 import DeleteAccount from "./routes/DeleteAccount.js";
 import GetPosts from "./routes/GetPosts.js";
 import NewProfileImage from "./routes/NewProfileImage.js";
-import Likes from "./routes/Likes.js";
+import LikesPost from "./routes/LikesPost.js";
+import LikesUser from "./routes/LikesUser.js";
+import LikesUserAdd from "./routes/LikesUserAdd.js";
 import Login from "./routes/Login.js";
 import NewUser from "./routes/NewUser.js";
 import NewPost from "./routes/NewPost.js";
@@ -28,15 +30,21 @@ app.get("/server/delete-account", cookieJWT, DeleteAccount);
 app.get("/server/delete", DeleteAllPosts);
 app.post("/server/images", cookieJWT, upload.single("image"), NewProfileImage);
 app.get("/server/images/:key", getFileStream, getFileStream);
-app.post("/server/like", cookieJWT, upload.none(), Likes(1));
-app.post("/server/unlike", cookieJWT, upload.none(), Likes(-1));
+app.post(
+  "/server/like",
+  cookieJWT,
+  upload.none(),
+  LikesUser,
+  LikesUserAdd,
+  LikesPost
+);
 app.post("/server/login", upload.none(), Login);
 app.get("/server/logout", (req, res) => {
   res.clearCookie("token").status(200).redirect("/");
 });
 app.post("/server/newpost", cookieJWT, upload.none(), NewPost);
 app.post("/server/newuser", upload.none(), NewUser);
-app.get("/server/posts", cookieJWT, GetPosts);
+app.get("/server/posts", cookieJWT, LikesUser, GetPosts);
 app.get("/server/verify", cookieJWT, (req, res) => {
   res.send(req.user.username);
 });
