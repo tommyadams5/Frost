@@ -1,14 +1,16 @@
 import "./Post.css";
+import sendData from "./sendData";
 
 interface Props {
-  username: string;
   text: string;
-  image: string;
+  username: string;
   profileImg: string;
+  image: string;
   time: Date;
+  postID: string;
 }
 
-function Post({ text, username, profileImg, image, time }: Props) {
+function Post({ text, username, profileImg, image, time, postID }: Props) {
   const datetime = new Date(time);
   const datetimeFormatted = new Intl.DateTimeFormat("en-US", {
     dateStyle: "short",
@@ -21,6 +23,17 @@ function Post({ text, username, profileImg, image, time }: Props) {
     urlRegex,
     (url) => `<a href="${url}" style="color: white;">${url}</a>`
   );
+
+  const sendLike = () => {
+    let checkbox = document.getElementById(time + username) as HTMLInputElement;
+    if (checkbox !== null) {
+      if (checkbox.checked) {
+        sendData({ postID: postID }, "/server/like");
+      } else {
+        sendData({ postID: postID }, "/server/unlike");
+      }
+    }
+  };
 
   return (
     <div className="post_box">
@@ -39,6 +52,16 @@ function Post({ text, username, profileImg, image, time }: Props) {
         />
         <div className="post_image">
           <img src={image} alt="" />
+        </div>
+        <div className="star_box">
+          <div className="likes">Likes</div>
+          <input
+            type="checkbox"
+            className="star"
+            id={time + username}
+            onChange={sendLike}
+          />
+          <label htmlFor={time + username} className="star_label"></label>
         </div>
       </div>
     </div>

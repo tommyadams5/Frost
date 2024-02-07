@@ -12,6 +12,7 @@ function Feed() {
   async function pullData() {
     const query = await axios.get("/server/posts");
     setPosts(query.data);
+    console.log(query.data[0].id);
   }
 
   React.useEffect(() => {
@@ -28,12 +29,12 @@ function Feed() {
       <PostBox pullData={pullData} />
       {posts.map((post: any) => (
         <Post
-          username={post.username}
           text={post.text}
-          image={post.image}
+          username={post.username}
           profileImg={post.profileImg}
-          key={post.id}
+          image={post.image}
           time={post.time}
+          postID={post.id}
         />
       ))}
     </div>

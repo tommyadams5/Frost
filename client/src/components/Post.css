@@ -34,3 +34,42 @@
 .post_text {
   padding-top: 8px;
 }
+
+.likes {
+  padding-top: 14px;
+  font-size: 15px;
+  text-align: right;
+}
+
+.star_box {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.star {
+  display: none;
+}
+
+.star_label {
+  padding-top: 4px;
+  font-size: 23px;
+  transition: 0.2s ease;
+  color: orange;
+  margin-left: 5px;
+}
+
+.star_label:hover {
+  color: yellow;
+  transition: 0.2s ease;
+}
+.star_label:active::before {
+  transform: scale(1.1);
+}
+
+.star_label::before {
+  content: "\2606";
+}
+
+.star:checked ~ .star_label::before {
+  content: "\2605";
+}
