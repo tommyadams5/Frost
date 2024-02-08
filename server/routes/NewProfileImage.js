@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 import { uploadFile } from "../logic/AWS.js";
 
 const NewProfileImage = async (req, res) => {
