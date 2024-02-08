@@ -37,7 +37,7 @@ function ProfileImage({ username }: any) {
   };
 
   return (
-    <div className="wrapper">
+    <div>
       {username && (
         <img
           src={"http://localhost:8000/server/images/" + username}

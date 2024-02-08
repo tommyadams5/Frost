@@ -1,6 +1,5 @@
 .wrapper {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  background: rgb(229, 229, 229);
   font-size: 18px;
 }

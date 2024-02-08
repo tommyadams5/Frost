@@ -30,23 +30,30 @@ function PostBox({ pullData }: any) {
   };
 
   return (
-    <div className="postbox">
-      <div className="postbox_profile">
-        <ProfileImage username={username} />
-        <div>{username}</div>
+    <div>
+      <div className="links">
+        <a href="/server/delete-account">Delete Account</a>
+        <a href="/server/delete">Clear Feed</a>
+        <a href="/server/logout">Logout</a>
       </div>
-      <form>
-        <input
-          className="postbox_input"
-          value={postText}
-          onChange={(e) => setPostText(e.target.value)}
-          placeholder="What's Up?"
-          type="text"
-        />
-        <button onClick={createPost} type="submit" className="postbox_button">
-          Post
-        </button>
-      </form>
+      <div className="postbox">
+        <div className="postbox_profile">
+          <div>{username}</div>
+          <ProfileImage username={username} />
+        </div>
+        <form>
+          <input
+            className="postbox_input"
+            value={postText}
+            onChange={(e) => setPostText(e.target.value)}
+            placeholder="What's Up?"
+            type="text"
+          />
+          <button onClick={createPost} type="submit" className="postbox_button">
+            Post
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

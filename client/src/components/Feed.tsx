@@ -20,11 +20,6 @@ function Feed() {
 
   return (
     <div className="feed">
-      <a href="/server/delete-account">Delete Account</a>
-      <div></div>
-      <a href="/server/delete">Clear Feed</a>
-      <div></div>
-      <a href="/server/logout">Logout</a>
       <PostBox pullData={pullData} />
       {posts.map((post: any) => (
         <Post
