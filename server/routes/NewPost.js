@@ -1,5 +1,6 @@
 import db from "../logic/firestore.js";
 
+// Add a post to the database
 const NewPost = async (req, res) => {
   await db.collection("posts").add({
     username: req.user.username,

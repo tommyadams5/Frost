@@ -1,5 +1,6 @@
 import db from "../logic/firestore.js";
 
+// Update the number of likes for a post
 const LikesPost = async (req, res) => {
   const docRef = db.collection("posts").doc(req.body.postID);
   const query = await docRef.get();

@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 
+// Confirm user ID via JWT cookie
 const cookieJWT = (req, res, next) => {
   const token = req.cookies.token;
   try {

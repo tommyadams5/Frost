@@ -1,6 +1,7 @@
 import db from "../logic/firestore.js";
 import jwt from "jsonwebtoken";
 
+// Checks username and password, and sends a JWT cookie if correct.
 const Login = async (req, res) => {
   try {
     const doc = await db.collection("users").doc(req.body.username).get();

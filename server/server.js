@@ -9,7 +9,7 @@ import GetPosts from "./routes/GetPosts.js";
 import NewProfileImage from "./routes/NewProfileImage.js";
 import LikesPost from "./routes/LikesPost.js";
 import LikesUser from "./routes/LikesUser.js";
-import LikesUserAdd from "./routes/LikesUserAdd.js";
+import LikesUserUpdate from "./routes/LikesUserUpdate.js";
 import Login from "./routes/Login.js";
 import NewUser from "./routes/NewUser.js";
 import NewPost from "./routes/NewPost.js";
@@ -35,7 +35,7 @@ app.post(
   cookieJWT,
   upload.none(),
   LikesUser,
-  LikesUserAdd,
+  LikesUserUpdate,
   LikesPost
 );
 app.post("/server/login", upload.none(), Login);
@@ -49,6 +49,7 @@ app.get("/server/verify", cookieJWT, (req, res) => {
   res.send(req.user.username);
 });
 
+// Initialize server
 app.listen(3000, () => {
   console.log("Server running on port 3000");
 });

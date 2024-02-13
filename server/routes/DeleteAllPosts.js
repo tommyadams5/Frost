@@ -1,5 +1,6 @@
 import db from "../logic/firestore.js";
 
+// Clear all history of posts. Used for app development.
 const DeleteAllPosts = async (req, res) => {
   const query = await db.collection("posts").get();
   query.docs.forEach((doc) => {

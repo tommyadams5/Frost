@@ -1,6 +1,8 @@
 import db from "../logic/firestore.js";
 
-const LikesUserAdd = async (req, res, next) => {
+// Updates list of posts that user has liked and calculates the change in likes
+// that should happen in response to the liked button being clicked
+const LikesUserUpdate = async (req, res, next) => {
   const postID = req.body.postID;
   let likedPosts = req.likedPosts;
   if (likedPosts === undefined) {
@@ -19,4 +21,4 @@ const LikesUserAdd = async (req, res, next) => {
   next();
 };
 
-export default LikesUserAdd;
+export default LikesUserUpdate;
