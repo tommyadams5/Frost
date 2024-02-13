@@ -1,6 +1,6 @@
 import React from "react";
 import "./Login.css";
-import sendData from "./sendData.tsx";
+import sendData from "../../components/sendData.tsx";
 
 function LoginUser() {
   const [username, setUsername] = React.useState<string>("");

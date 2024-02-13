@@ -1,5 +1,5 @@
 import { useState } from "react";
-import sendData from "./sendData.tsx";
+import sendData from "../../components/sendData.tsx";
 
 function CreateUser() {
   const [username, setUsername] = useState<string>("");

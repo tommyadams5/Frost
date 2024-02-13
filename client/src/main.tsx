@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
-import LoginUser from "./components/Login.tsx";
-import CreateUser from "./components/CreateUser.tsx";
+import App from "./pages/App/App.tsx";
+import LoginUser from "./pages/Login/Login.tsx";
+import CreateUser from "./pages/CreateUser/CreateUser.tsx";
 import axios from "axios";
 import {
   createBrowserRouter,
