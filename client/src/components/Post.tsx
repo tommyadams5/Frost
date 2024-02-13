@@ -26,6 +26,8 @@ function Post({
   const datetime = new Date(time);
   const [likesCount, setLikesCount] = React.useState(likes);
   const [isChecked, setIsChecked] = React.useState(liked);
+
+  // Update likes count and like checkbox in response to post reloading
   React.useEffect(() => {
     setLikesCount(likes);
   }, [time]);
@@ -33,6 +35,7 @@ function Post({
     setIsChecked(liked);
   }, [time]);
 
+  // Format time for each post
   const datetimeFormatted = new Intl.DateTimeFormat("en-US", {
     dateStyle: "short",
     timeStyle: "short",
@@ -45,6 +48,8 @@ function Post({
     (url) => `<a href="${url}" style="color: white;">${url}</a>`
   );
 
+  // Updates likes count for the post. Function will unlike the post if user
+  // has previously liked it, or like the post if user has not already liked it.
   const sendLike = () => {
     setIsChecked(!isChecked);
     sendData({ postID: postID }, "/server/like");

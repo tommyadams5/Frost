@@ -4,15 +4,19 @@ import axios from "axios";
 import "./PostBox.css";
 import ProfileImage from "./ProfileImage.tsx";
 
-function PostBox({ pullData }: any) {
+function PostBox({ updatePosts }: any) {
   const [postText, setPostText] = React.useState("");
   const [postPic, setPostPic] = React.useState("");
   const [username, setUsername] = React.useState("");
+
+  // Confirm user's ID
   async function UserID() {
     const query = await axios.get("/server/verify");
     setUsername(query.data);
   }
   UserID();
+
+  // Send post to server and update post feed
   const createPost = async (e: any) => {
     e.preventDefault();
     await sendData(
@@ -24,7 +28,7 @@ function PostBox({ pullData }: any) {
       "/server/newpost"
     );
 
-    pullData();
+    updatePosts();
     setPostText("");
     setPostPic("");
   };

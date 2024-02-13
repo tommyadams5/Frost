@@ -4,23 +4,23 @@ import PostBox from "./PostBox.tsx";
 
 import axios from "axios";
 
+// Initialize feed of posts that loads after user logs in.
 function Feed() {
   const init: any[] = [];
-
   const [posts, setPosts] = React.useState(init);
 
-  async function pullData() {
+  async function updatePosts() {
     const query = await axios.get("/server/posts");
     setPosts(query.data);
   }
 
   React.useEffect(() => {
-    pullData();
+    updatePosts();
   }, init);
 
   return (
     <div className="feed">
-      <PostBox pullData={pullData} />
+      <PostBox pullData={updatePosts} />
       {posts.map((post: any) => (
         <Post
           text={post.text}

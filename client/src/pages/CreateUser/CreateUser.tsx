@@ -1,10 +1,12 @@
 import { useState } from "react";
 import sendData from "../../components/sendData.tsx";
 
+// Create a new user and password, and then login the user.
 function CreateUser() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [warning, setWarning] = useState<string>("");
+
   const submit = async (event: any) => {
     event.preventDefault();
     const query = await sendData(

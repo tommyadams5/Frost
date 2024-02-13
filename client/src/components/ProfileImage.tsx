@@ -1,17 +1,19 @@
 import axios from "axios";
 import Resizer from "react-image-file-resizer";
 
+// Function sends profile image to server
 async function postImage(image: any, user: string) {
-  console.log(image);
   const formData = new FormData();
   formData.append("image", image);
   formData.append("user", user);
   const result = await axios.post("/server/images", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
+
   return result.data;
 }
 
+// Function reduces the size of the profile image and then sends it to the server
 function ProfileImage({ username }: any) {
   const fileSelected = async (event: any) => {
     const resizeFile = (fileInput: any) =>
@@ -30,7 +32,6 @@ function ProfileImage({ username }: any) {
         );
       });
     const fileResized = await resizeFile(event.target.files[0]);
-    console.log(fileResized, username);
     const result = await postImage(fileResized, username);
     console.log(result);
     window.location.href = "/";
