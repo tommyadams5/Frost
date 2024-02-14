@@ -35,10 +35,16 @@ function PostBox({ updatePosts }: any) {
 
   return (
     <div>
-      <div className="links">
-        <a href="/server/delete-account">Delete Account</a>
-        <a href="/server/delete">Clear Feed</a>
-        <a href="/server/logout">Logout</a>
+      <div className="navbar">
+        <a className="navbar_link" href="/server/delete-account">
+          Delete Account
+        </a>
+        <a className="navbar_link" href="/server/delete">
+          Clear Feed
+        </a>
+        <a className="navbar_link" href="/server/logout">
+          Logout
+        </a>
       </div>
       <div className="postbox">
         <div className="postbox_profile">
