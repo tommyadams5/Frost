@@ -20,7 +20,7 @@ function Feed() {
 
   return (
     <div className="feed">
-      <PostBox pullData={updatePosts} />
+      <PostBox updatePosts={updatePosts} />
       {posts.map((post: any) => (
         <Post
           text={post.text}
