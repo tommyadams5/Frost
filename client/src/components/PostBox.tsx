@@ -3,6 +3,7 @@ import sendData from "./sendData.tsx";
 import axios from "axios";
 import "./PostBox.css";
 import ProfileImage from "./ProfileImage.tsx";
+import Navbar from "./Navbar.tsx";
 
 function PostBox({ updatePosts }: any) {
   const [postText, setPostText] = React.useState("");
@@ -35,17 +36,7 @@ function PostBox({ updatePosts }: any) {
 
   return (
     <div>
-      <div className="navbar">
-        <a className="navbar_link" href="/server/delete-account">
-          Delete Account
-        </a>
-        <a className="navbar_link" href="/server/delete">
-          Clear Feed
-        </a>
-        <a className="navbar_link" href="/server/logout">
-          Logout
-        </a>
-      </div>
+      <Navbar />
       <div className="postbox">
         <div className="postbox_profile">
           <div>{username}</div>

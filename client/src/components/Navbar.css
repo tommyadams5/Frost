@@ -1,0 +1,29 @@
+.navbar {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin-left: 130px;
+  padding-top: 15px;
+  justify-items: center;
+}
+
+.navbar_link:hover {
+  filter: brightness(130%);
+  -webkit-filter: brightness(130%);
+  -moz-filter: brightness(130%);
+  -o-filter: brightness(130%);
+  -ms-filter: brightness(130%);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  background: radial-gradient(closest-side, #bebebe60, #23232360, #b0b0b032);
+}
+
+.navbar_link {
+  color: black;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  border-radius: 70%;
+  padding: 20px;
+  text-decoration: none;
+  font-weight: 550;
+  font-size: 16px;
+}

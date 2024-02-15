@@ -41,7 +41,9 @@ function LoginUser() {
         <div></div>
         <button type="submit">Login</button>
         <div>{warning}</div>
-        <a href="/newuser">Create Account</a>
+        <a className="navbar_link" href="/newuser">
+          Create Account
+        </a>
       </form>
     </div>
   );
