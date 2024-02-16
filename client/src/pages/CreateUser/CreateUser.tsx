@@ -3,7 +3,7 @@ import sendData from "../../components/sendData.tsx";
 import title from "../../assets/Frost.png";
 import "./CreateUser.css";
 
-// Create a new user and password, and then login the user.
+// Create a new user and password, and then login the user
 function CreateUser() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
