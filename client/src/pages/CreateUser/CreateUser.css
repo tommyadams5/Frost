@@ -1,10 +1,10 @@
-.login_wrapper {
+.create_user_wrapper {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   padding-top: 150px;
 }
 
-.login_input {
+.create_user_input {
   display: block;
   margin-bottom: 20px;
   font-size: 25px;
@@ -14,16 +14,16 @@
   box-shadow: 5px 10px 10px #888888;
 }
 
-.login_logo {
+.create_user_logo {
   margin-bottom: 10px;
 }
 
-.login_form {
+.create_user_form {
   display: grid;
   justify-items: center;
 }
 
-.login_buttons {
+.create_user_buttons {
   appearance: none;
   box-shadow: 5px 10px 18px #888888;
   display: inline;
@@ -38,12 +38,12 @@
   margin: 5px;
 }
 
-.login_buttons:hover {
+.create_user_buttons:hover {
   filter: brightness(85%);
   transition: all 0.5s;
 }
 
-.login_warning {
+.create_user_warning {
   margin-top: 20px;
   font-size: 25px;
   padding: 10px;

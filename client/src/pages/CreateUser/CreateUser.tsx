@@ -1,6 +1,7 @@
 import { useState } from "react";
 import sendData from "../../components/sendData.tsx";
 import title from "../../assets/Frost.png";
+import "./CreateUser.css";
 
 // Create a new user and password, and then login the user.
 function CreateUser() {
@@ -10,32 +11,40 @@ function CreateUser() {
 
   const submit = async (event: any) => {
     event.preventDefault();
-    const query = await sendData(
-      { username: username, password: password },
-      "/server/newuser"
-    );
-    if (query === "User created") {
-      const query2 = await sendData(
+    if (!/^[a-zA-Z0-9]+$/.test(username)) {
+      setWarning("Username must be alphanumeric");
+    } else if (!/^[a-zA-Z0-9]+$/.test(password)) {
+      setWarning("Password must be alphanumeric");
+    } else if (username.length > 20 || password.length > 20) {
+      setWarning("Username and password must be 20 characters or less");
+    } else if (username.length > 0 && password.length > 0) {
+      const query = await sendData(
         { username: username, password: password },
-        "/server/login"
+        "/server/newuser"
       );
-      if (query2 === "Password match") {
-        window.location.href = "/";
+      if (query === "User created") {
+        const query2 = await sendData(
+          { username: username, password: password },
+          "/server/login"
+        );
+        if (query2 === "Password match") {
+          window.location.href = "/";
+        } else {
+          setWarning(query2);
+        }
       } else {
-        setWarning(query2);
+        setWarning(query);
       }
-    } else {
-      setWarning(query);
     }
   };
 
   return (
-    <div className="login_wrapper">
+    <div className="create_user_wrapper">
       <div></div>
-      <form className="login_form" onSubmit={submit}>
-        <img className="login_logo" src={title} alt="" />
+      <form className="create_user_form" onSubmit={submit}>
+        <img className="create_user_logo" src={title} alt="" />
         <input
-          className="login_input"
+          className="create_user_input"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           type="text"
@@ -43,7 +52,7 @@ function CreateUser() {
           id="un"
         />
         <input
-          className="login_input"
+          className="create_user_input"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
@@ -51,11 +60,11 @@ function CreateUser() {
           id="pass"
         />
         <div>
-          <button className="login_buttons" type="submit">
+          <button className="create_user_buttons" type="submit">
             Create Account
           </button>
         </div>
-        {warning && <div className="login_warning">{warning}</div>}
+        {warning && <div className="create_user_warning">{warning}</div>}
       </form>
     </div>
   );
