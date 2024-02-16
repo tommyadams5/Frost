@@ -5,7 +5,6 @@ import db from "../logic/firestore.js";
 const followsUpdate = async (req, res) => {
   const personID = req.params.key;
   let followedUsers = req.followedUsers;
-  console.log(req.user.username, personID, req.followedUsers);
   if (followedUsers === undefined) {
     followedUsers = [personID];
   } else {

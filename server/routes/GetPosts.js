@@ -2,7 +2,14 @@ import db from "../logic/firestore.js";
 
 // Request posts from database
 const GetPosts = async (req, res) => {
-  const posts = await db.collection("posts").get();
+  let docRef = "";
+  if (req.followedUsers) {
+    req.followedUsers.push(req.user.username);
+    docRef = db.collection("posts").where("username", "in", req.followedUsers);
+  } else {
+    docRef = db.collection("posts");
+  }
+  const posts = await docRef.get();
   let docData = [];
   posts.forEach((doc) => {
     let singleData = doc.data();

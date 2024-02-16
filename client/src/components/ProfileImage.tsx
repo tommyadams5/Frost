@@ -32,8 +32,7 @@ function ProfileImage({ username }: any) {
         );
       });
     const fileResized = await resizeFile(event.target.files[0]);
-    const result = await postImage(fileResized, username);
-    console.log(result);
+    await postImage(fileResized, username);
     window.location.href = "/";
   };
 

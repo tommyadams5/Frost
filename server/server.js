@@ -33,6 +33,10 @@ app.get("/server/delete", DeleteAllPosts);
 app.post("/server/images", cookieJWT, upload.single("image"), NewProfileImage);
 app.get("/server/images/:key", getFileStream, getFileStream);
 app.get("/server/follow/:key", cookieJWT, followsUser, followsUpdate);
+app.get("/server/follow/", cookieJWT, followsUser, (req, res) => {
+  res.send(req.followedUsers);
+});
+app.get("/server/follow-posts/", cookieJWT, LikesUser, followsUser, GetPosts);
 app.post(
   "/server/like",
   cookieJWT,

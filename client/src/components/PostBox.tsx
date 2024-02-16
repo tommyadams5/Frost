@@ -1,21 +1,12 @@
 import React from "react";
 import sendData from "./sendData.tsx";
-import axios from "axios";
 import "./PostBox.css";
 import ProfileImage from "./ProfileImage.tsx";
 import Navbar from "./Navbar.tsx";
 
-function PostBox({ updatePosts }: any) {
+function PostBox({ updatePosts, username }: any) {
   const [postText, setPostText] = React.useState("");
   const [postPic, setPostPic] = React.useState("");
-  const [username, setUsername] = React.useState("");
-
-  // Confirm user's ID
-  async function UserID() {
-    const query = await axios.get("/server/verify");
-    setUsername(query.data);
-  }
-  UserID();
 
   // Send post to server and update post feed
   const createPost = async (e: any) => {

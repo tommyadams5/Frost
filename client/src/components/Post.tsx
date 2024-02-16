@@ -14,6 +14,7 @@ interface Props {
   liked: boolean;
   following: any;
   setFollowing: any;
+  currentUser: boolean;
 }
 
 function Post({
@@ -27,6 +28,7 @@ function Post({
   liked,
   following,
   setFollowing,
+  currentUser,
 }: Props) {
   const datetime = new Date(time);
   const [likesCount, setLikesCount] = React.useState(likes);
@@ -84,29 +86,29 @@ function Post({
     if (followStatus === "Follow") {
       setFollowStatus("Unfollow");
       setFollowing((prevSet: any) => new Set([...prevSet, username]));
-      console.log(following, following.has(username));
     } else {
       setFollowStatus("Follow");
       const updatedSet = new Set(following);
       updatedSet.delete(username);
       setFollowing(updatedSet);
-      console.log(following, following.has(username));
     }
   };
 
   return (
     <div className="post_box">
       <div className="post_profileImg_box">
-        <div className="follow_box">
-          <button onClick={followChange} className={"follow_button"}>
-            {followStatus === "Follow" && (
-              <div className="follow_text">{followStatus}</div>
-            )}
-            {followStatus !== "Follow" && (
-              <div className="unfollow_text">{followStatus}</div>
-            )}
-          </button>
-        </div>
+        {!currentUser && (
+          <div className="follow_box">
+            <button onClick={followChange} className={"follow_button"}>
+              {followStatus === "Follow" && (
+                <div className="follow_text">{followStatus}</div>
+              )}
+              {followStatus !== "Follow" && (
+                <div className="unfollow_text">{followStatus}</div>
+              )}
+            </button>
+          </div>
+        )}
         <img
           className="post_profileImg"
           src={"http://localhost:8000/server/images/" + profileImg}
