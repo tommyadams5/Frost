@@ -6,6 +6,7 @@ import axios from "axios";
 
 // Initialize feed of posts that loads after user logs in.
 function Feed() {
+  const [following, setFollowing] = React.useState(new Set(["Sam"]));
   const init: any[] = [];
   const [posts, setPosts] = React.useState(init);
 
@@ -31,6 +32,8 @@ function Feed() {
           postID={post.id}
           likes={post.likes}
           liked={post.liked}
+          following={following}
+          setFollowing={setFollowing}
         />
       ))}
     </div>

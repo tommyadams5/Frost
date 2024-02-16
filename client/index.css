@@ -3,4 +3,5 @@ body {
   background-size: cover;
   background-attachment: fixed;
   font-family: "Proxima Nova", sans-serif;
+  overscroll-behavior: none;
 }

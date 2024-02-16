@@ -48,6 +48,8 @@ const getFileStream = (req, res, next) => {
   const data = s3
     .getObject(downloadParams)
     .createReadStream()
+
+    // Use default profile image if user does not have one.
     .on("error", (err) => {
       req.params.key = "default";
       next();

@@ -1,6 +1,7 @@
 import "./Post.css";
 import sendData from "./sendData";
 import React from "react";
+import axios from "axios";
 
 interface Props {
   text: string;
@@ -11,6 +12,8 @@ interface Props {
   postID: string;
   likes: number;
   liked: boolean;
+  following: any;
+  setFollowing: any;
 }
 
 function Post({
@@ -22,11 +25,22 @@ function Post({
   postID,
   likes,
   liked,
+  following,
+  setFollowing,
 }: Props) {
   const datetime = new Date(time);
   const [likesCount, setLikesCount] = React.useState(likes);
   const [isChecked, setIsChecked] = React.useState(liked);
   const [followStatus, setFollowStatus] = React.useState("Follow");
+  // const init: any[] = [];
+
+  React.useEffect(() => {
+    if (following.has(username)) {
+      setFollowStatus("Unfollow");
+    } else {
+      setFollowStatus("Follow");
+    }
+  }, [following, time]);
 
   // Update likes count and like checkbox in response to post reloading
   React.useEffect(() => {
@@ -64,11 +78,19 @@ function Post({
     }
   };
 
+  // Update follow status of another user.
   const followChange = () => {
+    axios.get("http://localhost:8000/server/follow/" + username);
     if (followStatus === "Follow") {
       setFollowStatus("Unfollow");
+      setFollowing((prevSet: any) => new Set([...prevSet, username]));
+      console.log(following, following.has(username));
     } else {
       setFollowStatus("Follow");
+      const updatedSet = new Set(following);
+      updatedSet.delete(username);
+      setFollowing(updatedSet);
+      console.log(following, following.has(username));
     }
   };
 
