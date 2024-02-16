@@ -28,7 +28,6 @@ function PostBox({ updatePosts }: any) {
       },
       "/server/newpost"
     );
-
     updatePosts();
     setPostText("");
     setPostPic("");

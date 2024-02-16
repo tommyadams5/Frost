@@ -78,3 +78,35 @@
 .star:checked ~ .star_label::before {
   content: "\2605";
 }
+
+.follow_box {
+  display: none;
+  position: absolute;
+}
+
+.post_profileImg_box:hover .follow_box {
+  display: grid;
+  align-items: center;
+}
+
+.follow_button {
+  background-color: rgba(211, 211, 211, 0.805);
+  font-size: 15px;
+  width: 80px;
+  margin-left: 15px;
+  border-radius: 5px;
+  font-weight: 750;
+  padding: 3px;
+}
+
+.follow_button:hover {
+  filter: brightness(140%);
+}
+
+.unfollow_text {
+  color: red;
+}
+
+.follow_text {
+  color: green;
+}

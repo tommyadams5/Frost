@@ -26,6 +26,7 @@ function Post({
   const datetime = new Date(time);
   const [likesCount, setLikesCount] = React.useState(likes);
   const [isChecked, setIsChecked] = React.useState(liked);
+  const [followStatus, setFollowStatus] = React.useState("Follow");
 
   // Update likes count and like checkbox in response to post reloading
   React.useEffect(() => {
@@ -63,9 +64,27 @@ function Post({
     }
   };
 
+  const followChange = () => {
+    if (followStatus === "Follow") {
+      setFollowStatus("Unfollow");
+    } else {
+      setFollowStatus("Follow");
+    }
+  };
+
   return (
     <div className="post_box">
       <div className="post_profileImg_box">
+        <div className="follow_box">
+          <button onClick={followChange} className={"follow_button"}>
+            {followStatus === "Follow" && (
+              <div className="follow_text">{followStatus}</div>
+            )}
+            {followStatus !== "Follow" && (
+              <div className="unfollow_text">{followStatus}</div>
+            )}
+          </button>
+        </div>
         <img
           className="post_profileImg"
           src={"http://localhost:8000/server/images/" + profileImg}
