@@ -1,5 +1,6 @@
 import { useState } from "react";
 import sendData from "../../components/sendData.tsx";
+import title from "../../assets/Frost.png";
 
 // Create a new user and password, and then login the user.
 function CreateUser() {
@@ -29,24 +30,32 @@ function CreateUser() {
   };
 
   return (
-    <div className="wrapper">
+    <div className="login_wrapper">
       <div></div>
-      <form onSubmit={submit}>
-        <div>Username</div>
+      <form className="login_form" onSubmit={submit}>
+        <img className="login_logo" src={title} alt="" />
         <input
+          className="login_input"
           value={username}
-          type="text"
           onChange={(e) => setUsername(e.target.value)}
-        />
-        <div>Password</div>
-        <input
-          value={password}
           type="text"
-          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Username"
+          id="un"
         />
-        <div></div>
-        <button type="submit">Create Account</button>
-        <div>{warning}</div>
+        <input
+          className="login_input"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          type="text"
+          id="pass"
+        />
+        <div>
+          <button className="login_buttons" type="submit">
+            Create Account
+          </button>
+        </div>
+        {warning && <div className="login_warning">{warning}</div>}
       </form>
     </div>
   );

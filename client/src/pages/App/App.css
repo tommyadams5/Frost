@@ -1,4 +1,4 @@
-.wrapper {
+.app_wrapper {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   font-size: 18px;

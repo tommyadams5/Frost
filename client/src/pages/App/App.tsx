@@ -3,7 +3,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="wrapper">
+    <div className="app_wrapper">
       <div className="col_1"></div>
       <div className="col_2">
         <Feed />

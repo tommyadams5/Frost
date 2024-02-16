@@ -1,6 +1,7 @@
 import React from "react";
 import "./Login.css";
 import sendData from "../../components/sendData.tsx";
+import title from "../../assets/Frost.png";
 
 function LoginUser() {
   const [username, setUsername] = React.useState<string>("");
@@ -20,30 +21,35 @@ function LoginUser() {
   };
 
   return (
-    <div className="wrapper">
+    <div className="login_wrapper">
       <div></div>
-      <form onSubmit={submit}>
-        <div>Username</div>
+      <form className="login_form" onSubmit={submit}>
+        <img className="login_logo" src={title} alt="" />
         <input
+          className="login_input"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           type="text"
+          placeholder="Username"
           id="un"
         />
-        <div>Password</div>
-
         <input
+          className="login_input"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
           type="text"
           id="pass"
         />
-        <div></div>
-        <button type="submit">Login</button>
-        <div>{warning}</div>
-        <a className="navbar_link" href="/newuser">
-          Create Account
-        </a>
+        <div>
+          <button className="login_buttons" type="submit">
+            Login
+          </button>
+          <a className="login_buttons" href="/newuser">
+            Create Account
+          </a>
+        </div>
+        {warning && <div className="login_warning">{warning}</div>}
       </form>
     </div>
   );

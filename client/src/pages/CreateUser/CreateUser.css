@@ -1,4 +1,55 @@
-.wrapper {
+.login_wrapper {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
+  padding-top: 150px;
+}
+
+.login_input {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 25px;
+  padding: 10px;
+  border-radius: 15px;
+  border: solid black 2px;
+  box-shadow: 5px 10px 10px #888888;
+}
+
+.login_logo {
+  margin-bottom: 10px;
+}
+
+.login_form {
+  display: grid;
+  justify-items: center;
+}
+
+.login_buttons {
+  appearance: none;
+  box-shadow: 5px 10px 18px #888888;
+  display: inline;
+  font-size: 25px;
+  padding: 10px;
+  border-radius: 15px;
+  color: rgb(96, 121, 129);
+  border: solid black 2px;
+  background: lightcyan;
+  transition: all 0.5s;
+  text-decoration: none;
+  margin: 5px;
+}
+
+.login_buttons:hover {
+  filter: brightness(85%);
+  transition: all 0.5s;
+}
+
+.login_warning {
+  margin-top: 20px;
+  font-size: 25px;
+  padding: 10px;
+  font-weight: 750;
+  color: white;
+  border: solid darkgrey;
+  border-radius: 5px;
+  background: rgba(124, 124, 124, 0.706);
 }

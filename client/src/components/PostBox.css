@@ -31,11 +31,6 @@
 
 .postbox_profileImg:hover {
   filter: brightness(130%);
-  -webkit-filter: brightness(130%);
-  -moz-filter: brightness(130%);
-  -o-filter: brightness(130%);
-  -ms-filter: brightness(130%);
-  -webkit-transition: all 0.5s;
   transition: all 0.5s;
   background: rgb(255, 255, 255);
 }

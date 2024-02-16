@@ -1,29 +1,53 @@
-.navbar {
+.del_account_modal {
   display: grid;
-  grid-template-columns: auto auto auto;
-  margin-left: 130px;
+  justify-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 200px;
+  background-color: rgb(255, 255, 255, 0.93);
+}
+
+.del_account_options {
+  padding-top: 20px;
+  grid-template-columns: auto auto;
+  display: grid;
+  justify-items: center;
+}
+
+.navbar_headers {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
   padding-top: 15px;
   justify-items: center;
+  align-items: end;
 }
 
 .navbar_link:hover {
   filter: brightness(130%);
-  -webkit-filter: brightness(130%);
-  -moz-filter: brightness(130%);
-  -o-filter: brightness(130%);
-  -ms-filter: brightness(130%);
-  -webkit-transition: all 0.5s;
   transition: all 0.5s;
   background: radial-gradient(closest-side, #bebebe60, #23232360, #b0b0b032);
 }
 
 .navbar_link {
   color: black;
-  -webkit-transition: all 0.5s;
+  border: none;
+  background: none;
   transition: all 0.5s;
   border-radius: 70%;
   padding: 20px;
   text-decoration: none;
   font-weight: 550;
   font-size: 16px;
+}
+
+.del_account_buttons {
+  font-size: 30px;
+}
+
+.navbar_logo {
+  height: 80px;
+  padding-bottom: 20px;
 }
