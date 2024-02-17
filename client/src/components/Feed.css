@@ -1,0 +1,32 @@
+.feed_toggle_box {
+  padding-left: 25px;
+  padding-right: 26px;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: -10px;
+}
+
+.feed_toggle,
+.feed_toggle_clicked {
+  appearance: none;
+  height: 100%;
+  width: 170px;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 10px;
+  background: none;
+  border: solid rgb(95, 95, 95) 1px;
+  background-color: rgba(194, 194, 194, 0.8);
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+}
+
+.feed_toggle:hover,
+.feed_toggle_clicked:hover {
+  background-color: rgb(120, 120, 120);
+}
+
+.feed_toggle_clicked {
+  text-decoration: underline;
+}

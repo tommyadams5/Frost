@@ -2,6 +2,7 @@ import React from "react";
 import Post from "./Post.tsx";
 import PostBox from "./PostBox.tsx";
 import axios from "axios";
+import "./Feed.css";
 
 // Initialize feed of posts that loads after user logs in.
 function Feed() {
@@ -31,8 +32,19 @@ function Feed() {
   return (
     <div className="feed">
       <PostBox updatePosts={updatePosts} username={username} />
-      <div>
-        <button onClick={() => setToggleFeed(!toggleFeed)}>Following</button>
+      <div className="feed_toggle_box">
+        <button
+          className={toggleFeed ? "feed_toggle_clicked" : "feed_toggle"}
+          onClick={() => setToggleFeed(true)}
+        >
+          News
+        </button>
+        <button
+          className={toggleFeed ? "feed_toggle" : "feed_toggle_clicked"}
+          onClick={() => setToggleFeed(false)}
+        >
+          Following
+        </button>
       </div>
       {posts.map((post: any) => (
         <Post
