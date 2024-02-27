@@ -1,0 +1,1 @@
+Current work in progress. This is a Twitter-like messaging web app with public posts, news feed, likes, account creation, and user verification. Used React and Typescript for front end, Node.js and Express for backend, and Firestore and AWS S3 for data storage. 
