@@ -1,3 +1,4 @@
+import bodyParser from "body-parser";
 import express from "express";
 import multer from "multer";
 import path from "path";
@@ -21,6 +22,7 @@ const __dirname = path.resolve();
 const app = express();
 const upload = multer({ dest: "uploads" });
 app.use(cookieParser());
+app.use(bodyParser.json());
 
 // Enabling React Router URLs
 app.use("/", express.static(path.join(__dirname, "../client/dist/")));

@@ -10,7 +10,7 @@ const NewPost = async (req, res) => {
     time: Number(req.body.time),
     likes: 0,
   });
-  res.send("User created");
+  res.send("Post created");
 };
 
 export default NewPost;

@@ -24,7 +24,7 @@
 .postbox_profileImg {
   margin-top: 15px;
   border-radius: 50%;
-  border: 1px solid black;
+  border: 1px solid rgb(109, 109, 109);
   height: 85px;
   width: 85px;
 }

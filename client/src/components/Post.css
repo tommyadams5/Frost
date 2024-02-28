@@ -1,6 +1,6 @@
 .post_box {
   border-radius: 15px;
-  background-color: rgb(24, 24, 24, 0.85);
+  background-color: rgba(73, 73, 73, 0.85);
   margin: 10px;
   padding: 15px;
   max-width: 480px;
@@ -32,7 +32,7 @@
 .post_time {
   text-align: right;
   font-size: smaller;
-  color: gray;
+  color: rgb(178, 178, 178);
 }
 
 .post_text {
@@ -43,7 +43,7 @@
   padding-top: 10px;
   text-align: right;
   font-size: smaller;
-  color: gray;
+  color: rgb(178, 178, 178);
 }
 
 .star_box {
