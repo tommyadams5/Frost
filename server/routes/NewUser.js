@@ -8,7 +8,7 @@ const NewUser = async (req, res) => {
   } else {
     db.collection("users")
       .doc(req.body.username)
-      .set({ password: req.body.password, likedPosts: [] });
+      .set({ password: req.body.password, likedPosts: [], followedUsers: [] });
     res.send("User created");
   }
 };
