@@ -25,9 +25,9 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 // Enabling React Router URLs
-app.use("/", express.static(path.join(__dirname, "../client/dist/")));
-app.use("/login", express.static(path.join(__dirname, "../client/dist/")));
-app.use("/newuser", express.static(path.join(__dirname, "../client/dist/")));
+app.use("/", express.static(path.join(__dirname, "dist")));
+app.use("/login", express.static(path.join(__dirname, "dist")));
+app.use("/newuser", express.static(path.join(__dirname, "dist")));
 
 // Routes
 app.get("/server/delete-account", cookieJWT, DeleteAccount);

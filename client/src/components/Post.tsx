@@ -82,7 +82,7 @@ function Post({
 
   // Update follow status of another user.
   const followChange = () => {
-    axios.get("http://localhost:8000/server/follow/" + username);
+    axios.get("/server/follow/" + username);
     if (followStatus === "Follow") {
       setFollowStatus("Unfollow");
       setFollowing((prevSet: any) => new Set([...prevSet, username]));
@@ -111,7 +111,7 @@ function Post({
         )}
         <img
           className="post_profileImg"
-          src={"http://localhost:8000/server/images/" + profileImg}
+          src={"/server/images/" + profileImg}
         ></img>
         <div className="post_username">{username}</div>
       </div>

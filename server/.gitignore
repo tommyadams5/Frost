@@ -1,4 +1,5 @@
 .env
-twitterclone-47eea-2ea3926028d0.json
+fs-key.json
 node_modules
 uploads
+nginx.pem

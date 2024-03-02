@@ -1,0 +1,11 @@
+services:
+  server:
+    build:
+      context: .
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+    volumes:
+      - ./.env:/usr/src/server/.env:ro
+      - ./fs-key.json:/usr/src/server/fs-key.json:ro

@@ -40,7 +40,7 @@ function ProfileImage({ username }: any) {
     <div>
       {username && (
         <img
-          src={"http://localhost:8000/server/images/" + username}
+          src={"/server/images/" + username}
           className="postbox_profileImg"
           onClick={() => document.getElementById("fileInput")?.click()}
         />

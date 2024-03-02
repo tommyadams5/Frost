@@ -7,7 +7,7 @@ import {
 } from "firebase-admin/firestore";
 
 initializeApp({
-  credential: cert("./twitterclone-47eea-2ea3926028d0.json"),
+  credential: cert("./fs-key.json"),
 });
 
 var db = getFirestore();
