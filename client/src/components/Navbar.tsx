@@ -16,9 +16,6 @@ function Navbar() {
         <button className="navbar_link" onClick={ToggleModal}>
           Delete Account
         </button>
-        <a className="navbar_link" href="/server/delete">
-          Clear Feed
-        </a>
         <a className="navbar_link" href="/server/logout">
           Logout
         </a>

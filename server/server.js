@@ -14,7 +14,6 @@ import LikesUserUpdate from "./routes/LikesUserUpdate.js";
 import Login from "./routes/Login.js";
 import NewUser from "./routes/NewUser.js";
 import NewPost from "./routes/NewPost.js";
-import DeleteAllPosts from "./routes/DeleteAllPosts.js";
 import followsUser from "./routes/FollowsUser.js";
 import followsUpdate from "./routes/FollowsUpdate.js";
 
@@ -31,7 +30,6 @@ app.use("/newuser", express.static(path.join(__dirname, "dist")));
 
 // Routes
 app.get("/server/delete-account", cookieJWT, DeleteAccount);
-app.get("/server/delete", DeleteAllPosts);
 app.post("/server/images", cookieJWT, upload.single("image"), NewProfileImage);
 app.get("/server/images/:key", getFileStream, getFileStream);
 app.get("/server/follow/:key", cookieJWT, followsUser, followsUpdate);
