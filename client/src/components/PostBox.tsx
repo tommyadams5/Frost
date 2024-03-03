@@ -19,7 +19,7 @@ function PostBox({ updatePosts, username }: any) {
       },
       "/server/newpost"
     );
-    updatePosts();
+    updatePosts(1, true);
     setPostText("");
     setPostPic("");
   };

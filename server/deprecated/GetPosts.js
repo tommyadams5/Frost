@@ -21,12 +21,7 @@ const GetPosts = async (req, res) => {
   // Sort posts so that most recent is shown first
   docData.sort((a, b) => b.time - a.time);
 
-  // Send requested posts
-  const offset = parseInt(req.query.offset) || 0;
-  const limit = parseInt(req.query.limit) || 15;
-  const pagePosts = docData.slice(offset, offset + limit);
-
-  res.send(pagePosts);
+  res.send(docData);
 };
 
 export default GetPosts;
