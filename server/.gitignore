@@ -4,3 +4,5 @@ node_modules
 uploads
 nginx.pem
 dist
+api_server.pem
+
