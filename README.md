@@ -1,4 +1,4 @@
-![Frost-DXGKEsHn](https://github.com/tommyadams5/Frost/assets/140980341/56bd66bc-6743-4221-a5a2-f246f75d1635)
+# Frost
 
 Frost is a Twitter-like messaging web app with public posts, news feed, likes, account creation, and user verification. I built and deployed Frost as a personal project. I used React and Typescript to create a responsive user interface. For the news feed, I implemented infinite scrolling to create a seamless user experience, and lazy loading to expedite load times and economize bandwidth. I established client side routing with React Router to alleviate server load. User access and authorization are governed with JWT cookie verification.
 
